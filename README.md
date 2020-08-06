@@ -1,2 +1,2 @@
 # Competitive-Programming
-This repo contains my stuff related to Competitive Programming
+This repo contains stuff related to Competitive Programming
