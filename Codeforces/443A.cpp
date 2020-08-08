@@ -13,23 +13,20 @@ void kkvanonymous()
 int main()
 {
     kkvanonymous();
-    string a;
-    int  j = 0;
-    char b[1001];
-    cin>>a;
-    cout<<a;
-    fl(i, 1, a.size()-1)
+    char s[1001];
+    gets(s);
+    int len = strlen(s), c = 0;
+    sort(s, s + len);
+    fl(i, 0, len)
     {
-        if (a[i] != ',' || a[i]!='\t')
+        if (s[i] >= 97 && s[i] <= 122)
         {
-            b[j] = a[i];
-            j++;
-            cout<<"called"<<endl;
+            if (s[i] != s[i + 1])
+            {
+                c++;
+            }
         }
     }
-    fl(i,0,a.size()){
-        cout<<b[i]<<endl;
-    }
-
+    cout << c;
     return 0;
 }
