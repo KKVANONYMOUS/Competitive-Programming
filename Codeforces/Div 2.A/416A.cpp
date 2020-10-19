@@ -49,17 +49,31 @@ int main(){
         char a;
         cin>>s>>m>>a;
         if (a=='Y'){
-            if (s==">=" && lower<=m){
+            if (s==">=" && m>lower){
                 lower=m-1;
             }
-            else if(s=="<=" && upper>=m){
+            else if(s=="<=" && m<upper){
                 upper=m+1;
             }
-            else if(s==">" && lower<m){
+            else if(s==">" && m>lower){
                 lower=m;
             }
-            else if(s=="<" && upper>m){
+            else if(s=="<" && m<upper){
                 upper=m;
+            }
+        }
+        else{
+             if (s==">=" && m<upper){
+                upper=m;
+            }
+            else if(s=="<=" && m>lower){
+                lower=m;
+            }
+            else if(s==">" && m<upper){
+                upper=m+1;
+            }
+            else if(s=="<" && m>lower){
+                lower=m-1;
             }
         }
     }
@@ -71,4 +85,3 @@ int main(){
     }
     return 0;
 }
-//not correct
