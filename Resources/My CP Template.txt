@@ -149,8 +149,7 @@ vll c(template_array_size);
 string s, t;
 ll ans = 0;
 
-void solve()
-{
+void solve(){
    
 }
 
