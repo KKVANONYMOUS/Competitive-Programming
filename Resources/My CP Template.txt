@@ -2,44 +2,130 @@
 using namespace std;
 
 /*DEBUGGER*/
-#define deb(x)      cout << #x << "=" << x << endl
-#define deb2(x, y)  cout << #x << "=" << x << "," << #y << "=" << y << endl
+#define deb(x) cout << #x << "=" << x << endl
+#define deb2(x, y) cout << #x << "=" << x << "," << #y << "=" << y << endl
 
-typedef long long            ll; 
-typedef pair<int, int>       pii;
-typedef pair<ll, ll>         pll;
+typedef long long ll;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
 typedef pair<string, string> pss;
-typedef vector<int>          vi;
-typedef vector<vi>           vvi;
-typedef vector<pii>          vii;
-typedef vector<ll>           vll;
-typedef vector<vll>          vvll;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef vector<pii> vii;
+typedef vector<ll> vll;
+typedef vector<vll> vvll;
 
-#define fl(i,a,n)   for(int i=a;i<n;i++)
-#define fll(i,a,n)  for(ll i=a;i<n;i++)
-#define tr(it, a)   for(auto it = a.begin(); it != a.end(); it++)
-#define all(c)      c.begin(), c.end()
-#define sz(a)       int((a).size())
-#define pb          push_back
-#define mp          make_pair
-#define F           first
-#define S           second
-#define gcd(a,b)    __gcd(a,b)
-#define sort(c)     sort(all(c))
-#define MOD         1000000007
-#define INF         2000000000000000000
+#define fl(i, a, n) for (int i = a; i < n; i++)
+#define fll(i, a, n) for (ll i = a; i < n; i++)
+#define tr(it, a) for (auto it = a.begin(); it != a.end(); it++)
+#define all(c) c.begin(), c.end()
+#define sz(a) int((a).size())
+#define pb push_back
+#define mp make_pair
+#define F first
+#define S second
+#define sort(c) sort(all(c))
+#define getUnique(c) {sort(c); c.erase(unique(all(c)), c.end());}
+#define MOD 1000000007
+#define PI  3.14159265358979323846
+#define INF 2000000000000000000
 
-void kkvanonymous(){
-ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+namespace number_theory {
+	ll gcd(ll x, ll y) {
+	  if (x == 0) return y;
+	  if (y == 0) return x;
+	  return gcd(y, x % y);
+	}
 
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+	bool isPrime(ll n) { 
+	  if (n <= 1) return false; 
+	  if (n <= 3) return true; 
+	  
+	  if (n % 2 == 0 || n % 3 == 0) return false; 
+	  
+	  for (ll i = 5; i * i <= n; i += 6) 
+		if (n % i == 0 || n % (i+2) == 0) 
+		  return false; 
+	  
+	  return true; 
+	} 
+	 
+	bool prime[15000105]; 
+	void sieve(int n) { 
+	  for (ll i = 0; i <= n; i++) prime[i] = 1;
+	  for (ll p = 2; p * p <= n; p++) { 
+		if (prime[p] == true) { 
+		  for (ll i = p * p; i <= n; i += p) 
+			prime[i] = false; 
+		} 
+	  } 
+	  prime[1] = prime[0] = 0;
+	} 
+	 vll primelist;
+	bool __primes_generated__ = 0;
+	 
+	void genprimes(int n) {
+	  __primes_generated__ = 1;
+	  sieve(n + 1);
+	  for (ll i = 2; i <= n; i++) if (prime[i]) primelist.push_back(i);
+	}
+	 
+	vll factors(ll n) {
+	  if (!__primes_generated__) {
+		exit(1);
+	  }
+	  vll facs;
+	 
+	  for (ll i = 0; primelist[i] * primelist[i] <= n && i < primelist.size(); i++) {
+		if (n % primelist[i] == 0) {
+		  while (n % primelist[i] == 0) {
+			n /= primelist[i];
+			facs.pb(primelist[i]);
+		  }
+		}
+	  }
+	  if (n > 1) {
+		facs.pb(n);
+	  }
+	  sort(facs);
+	  return facs;
+	}
 }
 
-int main(){
+using namespace number_theory;
+
+void kkvanonymous()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    genprimes(1.5e6);
+
+    //#ifndef ONLINE_JUDGE
+    //    freopen("input.txt", "r", stdin);
+    //    freopen("output.txt", "w", stdout);
+    //#endif
+}
+
+ll n, m, k, q, l, r, x, y, z;
+const ll template_array_size = 1e6 + 5240;
+vll a(template_array_size);
+vll b(template_array_size);
+vll c(template_array_size);
+string s, t;
+ll ans = 0;
+
+void solve(){
+  	cin>>n;
+    vll p=factors(n);
+    fll(i,0,sz(p))  cout<<p[i]<<" ";
+}
+
+int main()
+{
     kkvanonymous();
-    
+    int t=1;
+    //cin>>t;
+    while(t--) solve();
     return 0;
 }
