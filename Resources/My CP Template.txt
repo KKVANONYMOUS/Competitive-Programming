@@ -24,21 +24,31 @@ typedef vector<vll> vvll;
 #define mp make_pair
 #define F first
 #define S second
-#define sort(c) sort(all(c))
-#define getUnique(c)  {sort(c);c.erase(unique(all(c)), c.end());}
+#define getUnique(c)  {sort(all(c));c.erase(unique(all(c)), c.end())}
 #define MOD 1000000007
 #define PI 3.14159265358979323846
 #define INF 2000000000000000000
 
 /*TEMPLATES*/
-template<typename A> ostream& operator<<(ostream &cout, vector<A> const &v) {
-	cout << "["; for(int i = 0; i < sz(v); i++) {if (i) cout << ", "; cout << v[i];} return cout << "]";
+template <typename A>
+ostream &operator<<(ostream &cout, vector<A> const &v)
+{
+    cout << "[";
+    for (int i = 0; i < sz(v); i++)
+    {
+        if (i)
+            cout << ", ";
+        cout << v[i];
+    }
+    return cout << "]";
 }
 template <typename A, typename B>
 ostream &operator<<(ostream &cout, pair<A, B> const &p) { return cout << "(" << p.F << ", " << p.S << ")"; }
-template<typename A, typename B> istream& operator>>(istream& cin, pair<A, B> &p) {
-	cin >> p.F;
-	return cin >> p.S;
+template <typename A, typename B>
+istream &operator>>(istream &cin, pair<A, B> &p)
+{
+    cin >> p.F;
+    return cin >> p.S;
 }
 
 /*NUMBER THEORY*/
@@ -120,10 +130,10 @@ namespace number_theory
         {
             facs.pb(n);
         }
-        sort(facs);
+        sort(all(facs));
         return facs;
     }
-}
+} 
 
 using namespace number_theory;
 
@@ -134,23 +144,19 @@ void kkvanonymous()
     cout.tie(0);
     genprimes(1.5e6);
 
-#ifdef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+    //#ifdef ONLINE_JUDGE
+    //    freopen("input.txt", "r", stdin);
+    //    freopen("output.txt", "w", stdout);
+    //#endif
+}
+bool sortbysec(const pair<int,int> &a, 
+              const pair<int,int> &b) 
+{ 
+    return (a.second < b.second); 
 }
 
-
-ll n, m, k, q, l, r, x, y, z;
-const ll template_array_size = 1e6 + 5240;
-vll a(template_array_size);
-vll b(template_array_size);
-vll c(template_array_size);
-string s, t;
-ll ans = 0;
-
 void solve(){
-   
+  
 }
 
 int main()
