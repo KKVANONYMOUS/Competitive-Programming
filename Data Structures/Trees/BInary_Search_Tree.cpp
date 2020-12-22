@@ -106,9 +106,9 @@ int main()
     /*
      by doing so we are creating the object in the heap memory
      so that it is globally available throughtout the execution of
-      the program, other wose we might have used TreeNode new_node,
+      the program, otherwise we might have used `TreeNode new_node`,
        but this would have created the obj in stack memory which 
-       will not make our obj to be available globally
+       will not make our obj available globally
     */
 
     switch (option)
