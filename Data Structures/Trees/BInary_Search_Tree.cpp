@@ -82,6 +82,31 @@ public:
       }
     }
   }
+
+  //DFS-PreOrder Tree Traversal (NLR)
+  void printPreOrder(TreeNode *r){
+    if (r==NULL) return;
+    cout<<r->value<<" ";
+    printPreOrder(r->left);
+    printPreOrder(r->right);
+  }
+
+  //DFS-InOrder Tree Traversal (LNR)
+  void printInOrder(TreeNode *r){
+    if (r==NULL) return;
+    printPreOrder(r->left);
+    cout<<r->value<<" ";
+    printPreOrder(r->right);
+  }
+
+  //DFS-PostOrder Tree Traversal (LRN)
+  void printPostOrder(TreeNode *r){
+    if (r==NULL) return;
+    printPreOrder(r->left);
+    printPreOrder(r->right);
+    cout<<r->value<<" ";
+  }
+
 };
 
 int main()
@@ -129,7 +154,11 @@ int main()
       cout << "DELETE" << endl;
       break;
     case 4:
-      cout << "PRINT 2D" << endl;
+      cout << "PRINT" << endl;
+      //obj.printPreOrder(obj.root);
+      //obj.printInOrder(obj.root);
+      obj.printPostOrder(obj.root);
+      cout<<"\n";
       break;
     case 5:
       cout << "TREE HEIGHT" << endl;
