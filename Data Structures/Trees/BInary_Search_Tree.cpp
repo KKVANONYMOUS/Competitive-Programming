@@ -83,6 +83,18 @@ public:
     }
   }
 
+  //TO SEARCH FOR THE GIVEN KEY
+  TreeNode *IterativeSearch(int val){
+    if (root==NULL) return root;
+    TreeNode *temp=root;
+    while (temp!=NULL){
+      if (temp->value==val) return temp;
+      else if (val<temp->value) temp=temp->left;
+      else temp=temp->right;
+    }
+    return NULL;
+  }
+
   //DFS-PreOrder Tree Traversal (NLR)
   void printPreOrder(TreeNode *r){
     if (r==NULL) return;
@@ -160,6 +172,14 @@ int main()
       break;
     case 2:
       cout << "SEARCH" << endl;
+      cout<<"Enter the value to be searched in BST"<<endl;
+      cin>>value;
+      if(obj.IterativeSearch(value)==NULL){
+        cout<<"Value not present in the BST"<<endl;
+      }
+      else{
+        cout<<"Value found"<<endl;
+      }
       break;
     case 3:
       cout << "DELETE" << endl;
