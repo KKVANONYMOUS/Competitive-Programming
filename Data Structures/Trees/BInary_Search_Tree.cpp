@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 class TreeNode
@@ -93,6 +94,17 @@ public:
       else temp=temp->right;
     }
     return NULL;
+  }
+
+  //TO FIND HEIGHT OF BST
+  int findHeight(TreeNode *r){
+    if (r==NULL) return -1;
+    else {
+      int lHeight=findHeight(r->left);
+      int rHeight=findHeight(r->right);
+      if (rHeight>lHeight) return rHeight+1;
+      else return lHeight+1;
+    }
   }
 
   //DFS-PreOrder Tree Traversal (NLR)
@@ -194,6 +206,7 @@ int main()
       break;
     case 5:
       cout << "TREE HEIGHT" << endl;
+      cout<<"Height of BST is: "<<obj.findHeight(obj.root)<<endl;
       break;
     case 6:
       system("cls");
