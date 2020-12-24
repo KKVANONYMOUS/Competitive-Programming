@@ -107,6 +107,17 @@ public:
     cout<<r->value<<" ";
   }
 
+  //PRINT tree in graphical way
+  void Print2D(TreeNode *r,int space){
+    if (r==NULL) return;
+    space+=5;
+    Print2D(r->right,space);
+    cout<<"\n";
+    for(int i=5;i<space;i++) cout<<" ";
+    cout<<r->value<<"\n";
+    Print2D(r->left,space);
+  }
+
 };
 
 int main()
@@ -154,10 +165,11 @@ int main()
       cout << "DELETE" << endl;
       break;
     case 4:
-      cout << "PRINT" << endl;
+      cout << "PRINT2D" << endl;
       //obj.printPreOrder(obj.root);
       //obj.printInOrder(obj.root);
-      obj.printPostOrder(obj.root);
+      //obj.printPostOrder(obj.root);
+      obj.Print2D(obj.root,5);
       cout<<"\n";
       break;
     case 5:
