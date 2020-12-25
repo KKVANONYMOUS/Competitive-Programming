@@ -130,6 +130,26 @@ public:
     cout<<r->value<<" ";
   }
 
+  //TO PRINT TREE USING BFS
+  void printTreeByBFS(){
+    int h=findHeight(root);
+    for(int i=0;i<=h;i++){
+      cout<<"Level "<<i<<": ";
+      printCurrentLevel(root,i);
+      cout<<"\n";
+    }
+  }
+
+  //TO PRINT CURRENT LEVEL (utility function for printing tree using BFS)
+  void printCurrentLevel(TreeNode *r,int level){
+    if (r==NULL) return;
+    else if (level==0) cout<<r->value<<" ";
+    else {
+      printCurrentLevel(r->left,level-1);
+      printCurrentLevel(r->right,level-1);
+    }
+  }
+
   //PRINT tree in graphical way
   void Print2D(TreeNode *r,int space){
     if (r==NULL) return;
@@ -156,7 +176,8 @@ int main()
     cout << "3. Delete Node" << endl;
     cout << "4. Print/Traversal BST values" << endl;
     cout << "5. Height of Tree" << endl;
-    cout << "6. Clear Screen" << endl;
+    cout << "6. Print Tree using BFS" << endl;
+    cout << "7. Clear Screen" << endl;
     cout << "0. Exit Program" << endl;
 
     cin >> option;
@@ -208,6 +229,10 @@ int main()
       cout<<"Height of BST is: "<<obj.findHeight(obj.root)<<endl;
       break;
     case 6:
+      cout<<"PRINT BFS"<<endl;
+      obj.printTreeByBFS();
+      break;
+    case 7:
       system("cls");
       break;
     default:
