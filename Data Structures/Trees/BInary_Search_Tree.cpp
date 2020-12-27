@@ -106,6 +106,41 @@ public:
     }
   }
 
+  //UTILITY FUNCTION FOR DELETENODE
+  TreeNode *minValueNode(TreeNode *r){
+    if (r==NULL) return r;
+    else if (r->left!=NULL){
+      TreeNode *temp=minValueNode(r->left);
+      return temp;
+    }
+    return r;
+  }
+
+  //TO DELETE NODE
+  TreeNode *deleteNode(TreeNode *r,int val){
+    if (r==NULL) return r; //Base condition
+    else if (val<r->value) r->left=deleteNode(r->left,val); // if value smaller go left sub tree
+    else if(val>r->value) r->right=deleteNode(r->right,val); // if value greater go right sub tree
+    else{ // value matches
+      if (r->left==NULL){ //node with only right child or no child
+        TreeNode *temp = r->right;
+        delete r; 
+        return temp;
+      }
+      else if (r->right==NULL){ // node with only left child
+        TreeNode *temp = r->left; 
+        delete r;
+        return temp;
+      }
+      else{ // node with two children
+        TreeNode *temp=minValueNode(r->right);
+        r->value=temp->value;
+        r->right=deleteNode(r->right,temp->value);
+      }
+    }
+    return r;
+  }
+
   //DFS-PreOrder Tree Traversal (NLR)
   void printPreOrder(TreeNode *r){
     if (r==NULL) return;
@@ -207,7 +242,7 @@ int main()
       cout<<"Enter the value to be searched in BST"<<endl;
       cin>>value;
       if(obj.IterativeSearch(value)==NULL){
-        cout<<"Value not present in the BST"<<endl;
+        cout<<"Value NOT present in the BST"<<endl;
       }
       else{
         cout<<"Value found"<<endl;
@@ -215,6 +250,16 @@ int main()
       break;
     case 3:
       cout << "DELETE" << endl;
+      cout<<"Enter the value to be deleted"<<endl;
+      cin>>value;
+      new_node=obj.IterativeSearch(value);
+      if(new_node!=NULL){
+        obj.deleteNode(obj.root,value);
+        cout<<"Node deleted successfully"<<endl;
+      }
+      else{
+        cout<<"Value NOT present in the BST"<<endl;
+      }
       break;
     case 4:
       cout << "PRINT2D" << endl;
