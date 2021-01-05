@@ -23,4 +23,5 @@ int main(){
     int n;
     cin>>n;
     cout<<findNoOfWays(n);
+    return 0;
 }
