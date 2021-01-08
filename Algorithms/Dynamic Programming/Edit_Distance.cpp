@@ -15,7 +15,10 @@ int E_DRec(string a,string b,int la,int lb){
 // Time Complexity=O(n*m);
 // Space Complexity=O(n*m); coz we use dp 2D array
 int E_D(string a,string b,int la,int lb){
-
+    if(a==b) return 0;
+    if (la==0) return lb;
+    if (lb==0) return la;
+    
     vector <vector <int>> dp(a.size()+1,vector <int>(b.size()+1));  
 
     for(int i=0;i<la+1;i++){
