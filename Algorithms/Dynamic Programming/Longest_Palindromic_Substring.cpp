@@ -10,11 +10,14 @@ int lps(string a,int start,int end){
     if(start==end) return 1;
     
     if(a[start]==a[end]){
-        return 2+lps(a,start+1,end-1);
+        int len=end-start-1;
+
+        if(len==lps(a,start+1,end-1)){
+            return 2+len;
+        }
     }
-    else{
-        return max(lps(a,start,end-1),lps(a,start+1,end));
-    }
+
+    return max(lps(a,start,end-1),lps(a,start+1,end));
 }
 
 
@@ -27,13 +30,20 @@ int lpsRec(string a,int i,int j,vector <vector <int>> dp){
     
     if (dp[i][j]==-1){
         if(a[i]==a[j]){
-            dp[i][j]= 2+lpsRec(a,i+1,j-1,dp);
+            int len=j-i-1;
+
+            if (len==lpsRec(a,i+1,j-1,dp)) {
+                dp[i][j]= 2+len;
+            }
+            else{
+                dp[i][j]= max(lpsRec(a,i,j-1,dp),lpsRec(a,i+1,j,dp));
+            }
         }
         else{
             dp[i][j]= max(lpsRec(a,i,j-1,dp),lpsRec(a,i+1,j,dp));
         }
     }
-
+    
     return dp[i][j];
 }
 
@@ -41,21 +51,25 @@ int lpsRec(string a,int i,int j,vector <vector <int>> dp){
 // Time Complexity=O(n^2);
 // Space Complexity=O(n^2); coz we use dp 2D array
 int lpsTab(string a){
+    if(a=="") return 0;
     int n=a.size();
-    vector <vector <int>> dp(n,vector <int>(n,1));
+    int maxLPS=1;
+    vector <vector <int>> dp(n,vector <int>(n,0));
+
+    for(int i=0;i<n;i++) dp[i][i]=1;
 
     for(int i=n-2;i>=0;i--){
         for(int j=i+1;j<n;j++){
             if (a[i]==a[j]){
-                dp[i][j]=2+dp[i+1][j-1];
-            }
-            else{
-                dp[i][j]=max(dp[i][j-1],dp[i+1][j]);
+                if (dp[i+1][j-1]==1 || j-i==1){
+                    dp[i][j]=1;
+                    maxLPS=max(maxLPS,j-i+1);
+                }
             }
         }
     }
 
-    return dp[0][n-1];
+    return maxLPS;
 }
 
 int main(){
