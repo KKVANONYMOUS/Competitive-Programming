@@ -16,7 +16,7 @@ int Knapsack(vector <int> weights,vector <int> profit,int capacity){
 
     for(int i=1;i<weights.size();i++){
         for(int j=1;j<=capacity;j++){
-            if (j<i){
+            if (j<weights[i]){
                 dp[i][j]=dp[i-1][j];
             }
             else{
