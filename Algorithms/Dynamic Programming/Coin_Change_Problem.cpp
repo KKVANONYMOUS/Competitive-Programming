@@ -10,14 +10,20 @@ int CoinChange(vector <int> coins,int sum){
 
     vector <vector <int>> dp(coins.size(),vector <int> (sum+1,1));
 
-    for(int i=1;i<coins.size();i++){
+    for(int i=0;i<coins.size();i++){
         for(int j=1;j<=sum;j++){
-            if (j<coins[i]){
-                dp[i][j]=dp[i-1][j];
+            int includingCoin=0;
+            int excludingCoin=0;
+
+            if(coins[i]<=j){
+                includingCoin=dp[i][j-coins[i]];
             }
-            else{
-                dp[i][j]=dp[i][j-coins[i]]+dp[i-1][j];
+
+            if(i>0){
+                excludingCoin=dp[i-1][j];
             }
+            
+            dp[i][j]=includingCoin+excludingCoin;
         }
     }
 
