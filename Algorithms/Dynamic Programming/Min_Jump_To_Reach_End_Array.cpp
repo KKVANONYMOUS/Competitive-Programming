@@ -4,7 +4,6 @@ using namespace std;
 
 //Time Complexity:O(n)
 //Space Complexity:O(n)
-//Unbounded, coz we can use a weight more than once
 int MinJump(vector <int> arr){
     if (arr.size()==0) return 0;
 

@@ -4,7 +4,6 @@ using namespace std;
 
 //Time Complexity:O(n*rodLength)
 //Space Complexity:O(n*rodLength)
-//Unbounded, coz we can use a weight more than once
 int RodCutting(vector <int> pieces,vector <int> profit,int rodLength){
     if (pieces.size()==0 || profit.size()==0 || rodLength<=0) return 0;
 
