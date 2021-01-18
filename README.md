@@ -15,4 +15,4 @@ This repo contains stuff related to my practice done for Competitive Programming
 - [ ] Heap or priority queue
 - [ ] Graph
 - [ ] Greedy
-- [ ] Dynamic programming
+- [x] Dynamic programming
