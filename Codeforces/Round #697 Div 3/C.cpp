@@ -159,8 +159,8 @@ void solve(){
     ll a,b,k;
     cin>>a>>b>>k;
     vector <pll> p(k);
-    vll bcnt(1e6,0);
-    vll gcnt(1e6,0);
+    vll bcnt(a+1,0);
+    vll gcnt(b+1,0);
     fll(i,0,k){
         cin>>p[i].F;
         bcnt[p[i].F]++;
