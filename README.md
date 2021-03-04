@@ -11,7 +11,7 @@ This repo contains stuff related to my practice done for Competitive Programming
 - [ ] Backtracking
 - [ ] Tree
 - [x] BST
-- [ ] AVL Tree
+- [x] AVL Tree
 - [ ] Heap or priority queue
 - [ ] Graph
 - [ ] Greedy
