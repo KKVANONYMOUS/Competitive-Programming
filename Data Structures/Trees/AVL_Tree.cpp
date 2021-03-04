@@ -71,6 +71,12 @@ public:
 		return x;
 	}
 
+	//TO FIND THE MIN NODE IN THE SUB TREE
+	Node *maxNode(Node *r){
+		if(r==NULL) return r;
+		return (r->left);
+	}
+
     //TO INSERT NEW NODE
 	Node *insert(Node *r, Node *new_node)
 	{
@@ -120,6 +126,63 @@ public:
 		return r;
 	}
 
+	//TO DELETE NODE FROM AVL TREE
+	Node *deleteNode(Node *r,int val){
+		if(r==NULL) return r;
+
+		if(val < r->value){
+			r->left=deleteNode(r->left,val);
+		}
+		else if(val > r->value){
+			r->right=deleteNode(r->right,val);
+		}
+		else{
+			if(r->left == NULL){
+				Node *temp=r->right;
+				delete r;
+				return temp;
+			}
+			else if(r->right == NULL){
+				Node *temp=r->left;
+				delete r;
+				return temp;
+			}
+			else{
+				Node *temp=maxNode(r);
+				r->value=temp->value;
+				r->left=deleteNode(r->left,temp->value);
+			}
+		}
+
+		int bf=getBalanceFactor(r);
+		if(bf==2 and getBalanceFactor(r->left)>=0){
+			return rotateRight(r);
+		}
+		if(bf==2 and getBalanceFactor(r->left)==-1){
+			r->left=rotateLeft(r->left);
+			return rotateRight(r);
+		}
+		if(bf==-2 and getBalanceFactor(r->right)<=0){
+			return rotateLeft(r);
+		}
+		if(bf==-2 and getBalanceFactor(r->right)==1){
+			r->right=rotateRight(r->right);
+			return rotateLeft(r);
+		}
+
+		return r;
+	}
+
+	//TO SEARCH FOR A GIVEN NODE VALUE
+	Node *search(Node *r,int val){
+		if(r==NULL or r->value==val) return r;
+		else if(val <r->value){
+			return search(r->left,val);
+		}
+		else{
+			return search(r->right,val);
+		}
+	}
 	//TO PRINT TREE IN 2D FORM
 	void print2D(Node *r, int space)
 	{
@@ -133,7 +196,55 @@ public:
 		cout << r->value << "\n";
 		print2D(r->left, space);			
 	}
+
+	//PREORDER PRINTING
+	void preorder(Node *r){
+		if(r==NULL) return;
+
+		cout<<r->value<<" ";
+		preorder(r->left);
+		preorder(r->right);
+	}
+
+	//INORDER PRINTING
+	void inorder(Node *r){
+		if(r==NULL) return;
+		
+		inorder(r->left);
+		cout<<r->value<<" ";
+		inorder(r->right);
+	}
+
+	//POSTORDER PRINTING
+	void postorder(Node *r){
+		if(r==NULL) return;
+		
+		postorder(r->left);
+		postorder(r->right);
+		cout<<r->value<<" ";
+	}
+
+	//UTILITY FUNCTION FOR PRINTING LEVEL ORDER BFS
+	void printCurrLevel(Node *r,int l){
+		if(r==NULL) return;
+		else if (l==0) cout<<r->value<<" ";
+		else{
+			printCurrLevel(r->left,l-1);
+			printCurrLevel(r->right,l-1);
+		}
+	}
+	
+	//TO PRINT LEVEL ORDER BFS
+	void LevelOrderBFS(Node *root){
+		int h=getHeight(root);
+		for(int i=0;i<=h;i++){
+			cout<<"LEVEL"<<i<<": ";
+			printCurrLevel(root,i);
+			cout<<endl;
+		}
+	}
 };
+
 int main()
 {
 	AVL obj; // AVL TREE OBJECT
@@ -170,42 +281,41 @@ int main()
 		case 2:
 			cout << "SEARCH" << endl;
 			cout << "Enter VALUE of TREE NODE to SEARCH in AVL Tree: ";
-			//  cin >> val;
-			//  //new_node = obj.iterativeSearch(val);
-			//  new_node = obj.recursiveSearch(obj.root, val);
-			//  if (new_node != NULL) {
-			//    cout << "Value found" << endl;
-			//  } else {
-			//    cout << "Value NOT found" << endl;
-			//  }
+			  cin >> value;
+			  new_node = obj.search(obj.root, value);
+			  if (new_node != NULL) {
+			    cout << "Value found" << endl;
+			  } else {
+			    cout << "Value NOT found" << endl;
+			  }
 			break;
 		case 3:
 			cout << "DELETE" << endl;
 			cout << "Enter VALUE of TREE NODE to DELETE in AVL: ";
 			cin >> value;
-			//  new_node = obj.recursiveSearch(obj.root, val);
-			//  if (new_node != NULL) {
-			//    obj.root = obj.deleteNode(obj.root, val);
-			//    cout << "Value Deleted" << endl;
-			//  } else {
-			//    cout << "Value NOT found" << endl;
-			//  }
+			  new_node = obj.search(obj.root, value);
+			  if (new_node != NULL) {
+			    obj.root = obj.deleteNode(obj.root, value);
+			    cout << "Value Deleted" << endl;
+			  } else {
+			    cout << "Value NOT found" << endl;
+			  }
 			break;
 		case 4:
 			cout << "PRINT 2D: " << endl;
 			obj.print2D(obj.root, 5);
 			cout << endl;
-			//cout <<"Print Level Order BFS: \n";
-			//obj.printLevelOrderBFS(obj.root);
-			//cout <<endl;
-			//	      cout <<"PRE-ORDER: ";
-			//	      obj.printPreorder(obj.root);
-			//	      cout<<endl;
-			//	      cout <<"IN-ORDER: ";
-			//	      obj.printInorder(obj.root);
-			//	      cout<<endl;
-			//	      cout <<"POST-ORDER: ";
-			//	      obj.printPostorder(obj.root);
+			cout <<"Print Level Order BFS: \n";
+			obj.LevelOrderBFS(obj.root);
+			cout <<endl;
+			cout <<"PRE-ORDER: ";
+			obj.preorder(obj.root);
+			cout<<endl;
+			cout <<"IN-ORDER: ";
+			obj.inorder(obj.root);
+			cout<<endl;
+			cout <<"POST-ORDER: ";
+			obj.postorder(obj.root);
 			break;
 		case 5:
 			cout << "TREE HEIGHT" << endl;
