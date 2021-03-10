@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int n=4;
+const int n=5;
 
 void printSolution(int board[n][n]){
     for(int i=0;i<n;i++){
@@ -14,15 +14,24 @@ void printSolution(int board[n][n]){
 }
 
 bool isSafe(int row,int col,int board[n][n]){
+
+    //For same col
     for(int j=0;j<n;j++){
         if(board[j][col]) return false;
     }
-    if(row>0){
-        if(col>0 and board[row-1][col-1]) return false;
-        if(col<n-1 and board[row-1][col+1]) return false;
+ 
+    //For upper left diagonal
+    for(int i=row,j=col;i>=0 && j>=0;i--,j--){
+        if(board[i][j]) return false;
+    }
+
+    //For upper right diagonal
+    for(int i=row,j=col;i>=0 && j<n;i--,j++){
+        if(board[i][j]) return false;
     }
     return true;
 }
+
 bool solveNQueen(int row,int board[n][n]){
     if(row==n){
         printSolution(board);
@@ -32,11 +41,11 @@ bool solveNQueen(int row,int board[n][n]){
     bool res=false;
     for(int col=0;col<n;col++){
         if(isSafe(row,col,board)){
-            board[row][col]=1;
-            
-            res=solveNQueen(row+1,board) || res;
 
+            board[row][col]=1;
+            res=solveNQueen(row+1,board);
             board[row][col]=0;
+            
         }
     }
 
