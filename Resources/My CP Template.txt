@@ -16,6 +16,7 @@ typedef vector<ll> vll;
 typedef vector<vll> vvll;
 
 #define fl(i, a, n) for (int i = a; i < n; i++)
+#define flr(i, a, n) for (int i = n - 1; i >= a; i--)
 #define fll(i, a, n) for (ll i = a; i < n; i++)
 #define tr(it, a) for (auto it = a.begin(); it != a.end(); it++)
 #define all(c) c.begin(), c.end()
@@ -24,7 +25,7 @@ typedef vector<vll> vvll;
 #define mp make_pair
 #define F first
 #define S second
-#define getUnique(c)  {sort(all(c));c.erase(unique(all(c)), c.end())}
+#define getUnique(c) {sort(all(c));c.erase(unique(all(c)), c.end())}
 #define MOD 1000000007
 #define PI 3.14159265358979323846
 #define INF 2000000000000000000
@@ -133,7 +134,51 @@ namespace number_theory
         sort(all(facs));
         return facs;
     }
-} 
+
+    ll fact(ll x)
+    {
+        if (x == 0 || x == 1)
+            return 1;
+        return x * fact(x - 1);
+    }
+
+    bool isPowOfTwo(ll n)
+    {
+        if (n == 0)
+            return false;
+        return (ceil(log2(n)) == floor(log2(n)));
+    }
+
+    bool isPerfectSqr(ll n)
+    {
+        if (n < 0)
+            return false;
+        return ceil((double)sqrt(n)) == floor((double)sqrt(n));
+    }
+
+    ll sumOfDigits(ll n)
+    {
+        ll sum = 0;
+        while (n)
+        {
+            sum += (n % 10);
+            n /= 10;
+        }
+
+        return sum;
+    }
+
+    ll calPow(ll base, ll power)
+    {
+        ll ans = 1;
+        fll(i, 0, power)
+        {
+            ans *= base;
+        }
+        return ans;
+    }
+
+}
 
 using namespace number_theory;
 
@@ -142,21 +187,21 @@ void kkvanonymous()
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    genprimes(1.5e6);
+    //genprimes(1.5e6);
 
     //#ifdef ONLINE_JUDGE
     //    freopen("input.txt", "r", stdin);
     //    freopen("output.txt", "w", stdout);
     //#endif
 }
-bool sortbysec(const pair<int,int> &a, 
-              const pair<int,int> &b) 
-{ 
-    return (a.second < b.second); 
+bool sortbysec(const pair<int, int> &a,
+               const pair<int, int> &b)
+{
+    return (a.second < b.second);
 }
 
 void solve(){
-  
+    
 }
 
 int main()
