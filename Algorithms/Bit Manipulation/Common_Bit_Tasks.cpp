@@ -21,6 +21,20 @@ void updateBit(int &n,int i,int v){
     int cleared_n=n&(~(1<<i));
     n=cleared_n|mask;
 }
+void clearLastIBits(int &n,int i){
+    int mask=(-1<<i);
+    n=n&mask;
+}
+void clearRangItoJ(int &n,int i,int j){
+    int a=(-1<<(j+1)); //inseted of -1 we can also write (~0)
+    int b=(1<<i)-1;
+    int mask=a|b;
+    n=n&mask;
+}
+void replaceBits(int &n,int m,int i,int j){
+    clearRangItoJ(n,i,j);
+    n=n|(m<<i);
+}
 int main(){
     cout<<isOdd(3)<<"\n";
     cout<<isOdd(4)<<"\n";
@@ -34,5 +48,13 @@ int main(){
     cout<<n<<"\n";
     updateBit(n,0,1);
     cout<<n<<"\n";
+    clearLastIBits(n,2);
+    cout<<n<<"\n";
+    clearRangItoJ(n,1,3);
+    cout<<n;
+    int x=1024;
+    int m=21;
+    replaceBits(x,m,2,6);
+    cout<<x;
     
 }
