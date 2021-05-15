@@ -3,16 +3,17 @@ This repo contains stuff related to my practice done for Competitive Programming
 ### Goals
 - [x] Searching
 - [x] Sorting
-- [ ] Hashing
+- [x] Hashing
 - [ ] Stack
 - [ ] Queue
 - [x] Linked List
-- [ ] Recursion
-- [ ] Backtracking
-- [ ] Tree
+- [x] Recursion
+- [x] Backtracking
+- [x] Tree
 - [x] BST
 - [x] AVL Tree
 - [ ] Heap or priority queue
-- [ ] Graph
-- [ ] Greedy
+- [x] Graph
+- [x] Greedy
 - [x] Dynamic programming
+- [x] Tries
