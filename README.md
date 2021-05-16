@@ -16,4 +16,5 @@ This repo contains stuff related to my practice done for Competitive Programming
 - [x] Graph
 - [x] Greedy
 - [x] Dynamic programming
+- [x] Bit Manipulation
 - [x] Tries
