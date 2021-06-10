@@ -28,36 +28,9 @@ int findProfit(vector <int> price,int n){
     return profit[n-1];
 }
 
-//Time Complexity:O(n)
-//Space Complexity:O(1)
-//Using Valley-Peak Approach
- /*
-                       80
-                       /
-        30            /
-       /  \          25
-      /    15       /
-     /      \      /
-    2        10   /
-               \ /
-                8
-*/
-int findProfitDP(vector <int> price,int n){
-    int profit=0;
-
-    for(int i=1;i<n;i++){
-        int diff=price[i]-price[i-1];
-
-        if(diff>0) profit+=diff;
-    }
-
-    return profit;
-}
 int main(){
-    vector <int> price={ 2, 30, 15, 10, 8, 25, 80 };
+    vector <int> price={2,1,4,3,6,5,8};
     int n=price.size();
     cout<<findProfit(price,n);
-    cout<<"\n";
-    cout<<findProfitDP(price,n);
     return 0;
 }
