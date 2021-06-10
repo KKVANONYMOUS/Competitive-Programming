@@ -36,7 +36,7 @@ int main(){
             for(int k=0;k<C;k++){
                 temp[k]+=M[j][k];
             }
-            int row=j==0?j+1:j;
+            int row=j-i+1;
             ans=max(ans,maxSizeSubArray(temp,C)*row);
         }
         
