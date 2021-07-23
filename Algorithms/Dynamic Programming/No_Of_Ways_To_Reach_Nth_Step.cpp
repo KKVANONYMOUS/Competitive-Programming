@@ -5,8 +5,9 @@ using namespace std;
 vector <int> dp(10005,-1);
 
 int findNoOfWays(int n){
-    if (n==0 || n==1){
-        dp[0]=dp[1]=1;
+    if(n==0) return 0;
+    if (n==1){
+        dp[1]=1;
         return 1;
     }
     else if (n==2){
@@ -15,7 +16,7 @@ int findNoOfWays(int n){
     }
     if (dp[n]!=-1) return dp[n];
 
-    dp[n]=findNoOfWays(n-1)+findNoOfWays(n-2)+findNoOfWays(n-3);
+    dp[n]=findNoOfWays(n-1)+findNoOfWays(n-2);
     return dp[n];
 }
 
