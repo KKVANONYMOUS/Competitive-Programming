@@ -31,7 +31,12 @@ int countForSubset(vector <int> a,int sum){
             dp[i][j]=including+excluding;
         }
     }
-
+    for(auto x:dp){
+        for(auto y:x){
+            cout<<y<<" ";
+        }
+        cout<<endl;
+    }
     return dp[a.size()-1][sum];
 }
 
