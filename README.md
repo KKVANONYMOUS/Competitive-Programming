@@ -4,15 +4,15 @@ This repo contains stuff related to my practice done for Competitive Programming
 - [x] Searching
 - [x] Sorting
 - [x] Hashing
-- [ ] Stack
-- [ ] Queue
+- [x] Stack
+- [x] Queue
 - [x] Linked List
 - [x] Recursion
 - [x] Backtracking
 - [x] Tree
 - [x] BST
 - [x] AVL Tree
-- [ ] Heap or priority queue
+- [x] Heap or priority queue
 - [x] Graph
 - [x] Greedy
 - [x] Dynamic programming
