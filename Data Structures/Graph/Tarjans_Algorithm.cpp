@@ -49,7 +49,7 @@ public:
         // After all the above operation if the low_time and disc_time of the current node are equal that means it is the root of the SCC
         if (low_time[node] == disc_time[node])
         {
-            // Looping till we find other node with low_time and disc_time equal, as the nodes between the two will constitute the SCC nodes of the current node
+            // Looping till we find this particlular node as the nodes before that will constitute the SCC nodes of the current node
             while (!st.empty() and st.top() != node)
             {
                 int curr_node = st.top();
